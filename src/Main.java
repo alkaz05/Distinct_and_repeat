@@ -1,3 +1,7 @@
+import java.util.Arrays;
+import java.util.Set;
+import java.util.TreeSet;
+
 public class Main {
     public static void main(String[] args) {
         int[] massiv = {2, 5, 1 , 3, 4, 2, 1, 3};
@@ -5,6 +9,11 @@ public class Main {
         int countD = countDistinct(massiv);
 
         System.out.println("Количество уникальных = "+ countD);
+        countD = countDistinctWithSet(massiv);
+        System.out.println("Количество уникальных = "+ countD);
+        countD = countDistinctWithStream(massiv);
+        System.out.println("Количество уникальных = "+ countD);
+
     }
 
     public static int countDistinct(int[] mas){
@@ -27,5 +36,19 @@ public class Main {
                 return true;
         }
         return false;
+    }
+
+    public static int countDistinctWithSet(int[] mas)
+    {
+        Set<Integer> set1 = new TreeSet<>();
+        for (int i = 0; i < mas.length; i++) {
+            set1.add(mas[i]);
+        }
+        return set1.size();
+    }
+
+    public static int countDistinctWithStream(int[] mas)
+    {
+        return (int) Arrays.stream(mas).distinct().count();
     }
 }
